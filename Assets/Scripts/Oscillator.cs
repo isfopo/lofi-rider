@@ -9,12 +9,13 @@ public class Oscillator : MonoBehaviour
     private double increment;
     private double phase;
     private double sampling_freq = 48000.0;
+
     private double saw;
-    private double sine;
     private double noise;
 
-    [Range (0.0f, 1.0f)]
-    public float sineGain;
+    public AudioLowPassFilter lowPassFilter;
+    public AudioChorusFilter chorusFilter;
+
     [Range(0.0f, 1.0f)]
     public float sawGain;
     [Range(0.0f, 1.0f)]
@@ -23,13 +24,12 @@ public class Oscillator : MonoBehaviour
     [Range(0.0f, 0.999f)]
     public float pulseWidth;
 
-    public float pitchIncrement;
+    public float tIncrement;
+    private float t = 0.5f;
 
-    public float pitchMin;
+    public float freqRatio = 10; // over 1
 
     System.Random rand = new System.Random();
-
-
 
     private void OnAudioFilterRead(float[] data, int channels)
     {
@@ -38,9 +38,6 @@ public class Oscillator : MonoBehaviour
         for (int i = 0; i < data.Length; i += channels)
         {
             phase += increment;
-
-            // sine wave
-            sine = (float)(sineGain * Mathf.Sin((float)phase));
 
             // square wave
             if (Mathf.Sin((float)phase) + pulseWidth >= 0)
@@ -55,7 +52,7 @@ public class Oscillator : MonoBehaviour
             // noise
             noise = (float)(rand.NextDouble() * 2.0 - 1.0) * noiseGain;
 
-            data[i] = (float)sine + (float)saw + (float)noise;
+            data[i] = (float)saw + (float)noise;
 
 
             if (channels == 2)
@@ -72,26 +69,34 @@ public class Oscillator : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetAxis("Horizontal") > 0)
+        if (Input.GetAxis("Horizontal") > 0.1)
         {
-            freq += pitchIncrement;
+            t += tIncrement;
         }
-        else if (Input.GetAxis("Horizontal") < 0)
+        else if (Input.GetAxis("Horizontal") < -0.1)
         {
-            freq -= pitchIncrement;
+            t -= tIncrement;
         }
         else
         {
-            if (freq < baseFreq)
+            if (t < 0.55f)
             {
-                freq += pitchIncrement;
+                t += tIncrement;
             }
-            else if (freq > baseFreq)
+            else if (t > 0.45f)
             {
-                freq -= pitchIncrement;
+                t -= tIncrement;
             }
         }
 
-        freq = freq < pitchMin ? pitchMin : freq;
+        t = t < 0 ? 0 : t;
+        t = t > 1 ? 1 : t;
+
+        freq = Mathf.Lerp((float)freq - freqRatio / 2, (float)freq + freqRatio/2, t);
+
+        pulseWidth = Mathf.SmoothStep(.25f, .75f, t);
+        noiseGain = Mathf.Lerp(0.0f, 0.3f, t);
+        chorusFilter.rate = Mathf.SmoothStep(0, 1, t);
+        lowPassFilter.cutoffFrequency = Mathf.LerpUnclamped(10, 11000, t);
     }
 }
