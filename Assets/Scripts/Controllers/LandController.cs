@@ -11,8 +11,6 @@ public class LandController : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("update");
-
         if ( Input.GetAxis("Vertical") < 0 )
         {
             if (transform.position.y >= LowerLimit)
