@@ -6,7 +6,7 @@ using UnityEngine;
 public class Quantize : MonoBehaviour
 {
     public int BPM;
-    private uint _128noteCount;
+    public uint _128noteCount;
     private int divisor;
 
     void OnEnable()
