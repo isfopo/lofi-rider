@@ -6,29 +6,26 @@ using UnityEngine;
 public class Quantize : MonoBehaviour
 {
     public int BPM;
-    public uint _128noteCount;
+    private int _128noteCount;
+    private int msCount;
+    public uint Beat;
+    public uint Bar;
+
     private int divisor;
 
-    void OnEnable()
+    private void Start()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        msCount = 0;
     }
 
-    void OnDisable()
+    private void FixedUpdate()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
-    }
+        msCount += 20;
+        _128noteCount = Mathf.RoundToInt((float)msCount / (1875.0f / (float)BPM));
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        StartCoroutine(Count(1.875f / BPM));
-    }
+        Beat = (uint)((_128noteCount / 32) % 4) + 1;
 
-    private IEnumerator Count(float SecondsToWait)
-    {
-        _128noteCount++;
-        yield return new WaitForSeconds(SecondsToWait);
-        StartCoroutine(Count(SecondsToWait));
+        Bar = (uint)(_128noteCount / 128) + 1;
     }
 
     // ===================================================
@@ -42,7 +39,6 @@ public class Quantize : MonoBehaviour
     private IEnumerator WaitToPlay(AudioSource source, int divisor)
     {
         yield return new WaitUntil(() => _128noteCount % divisor == 0);
-
         source.Play();
     }
 
