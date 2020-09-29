@@ -69,6 +69,21 @@ public class Oscillator : MonoBehaviour
 
     void Update()
     {
+        ControlT();
+
+        t = t < 0 ? 0 : t;
+        t = t > 1 ? 1 : t;
+
+        freq = Mathf.Lerp((float)freq - freqRatio / 2, (float)freq + freqRatio/2, t);
+
+        pulseWidth = Mathf.SmoothStep(.25f, .75f, t);
+        noiseGain = Mathf.Lerp(0.0f, 0.3f, t);
+        chorusFilter.rate = Mathf.SmoothStep(0, 1, t);
+        lowPassFilter.cutoffFrequency = Mathf.LerpUnclamped(10, 11000, t);
+    }
+
+    void ControlT()
+    {
         if (Input.GetAxis("Horizontal") > 0.1)
         {
             t += tIncrement;
@@ -88,15 +103,5 @@ public class Oscillator : MonoBehaviour
                 t -= tIncrement;
             }
         }
-
-        t = t < 0 ? 0 : t;
-        t = t > 1 ? 1 : t;
-
-        freq = Mathf.Lerp((float)freq - freqRatio / 2, (float)freq + freqRatio/2, t);
-
-        pulseWidth = Mathf.SmoothStep(.25f, .75f, t);
-        noiseGain = Mathf.Lerp(0.0f, 0.3f, t);
-        chorusFilter.rate = Mathf.SmoothStep(0, 1, t);
-        lowPassFilter.cutoffFrequency = Mathf.LerpUnclamped(10, 11000, t);
     }
 }

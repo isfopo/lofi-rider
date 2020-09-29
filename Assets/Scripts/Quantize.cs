@@ -6,54 +6,61 @@ using UnityEngine;
 public class Quantize : MonoBehaviour
 {
     public int BPM;
-    private int _128noteCount;
-    private int msCount;
-    public uint Beat;
-    public uint Bar;
+    public int _128noteCount; // change to private on release
+    public int Beat;
+    public int Bar;
+    public AudioSource PlayOnStart;
 
     private int divisor;
 
     private void Start()
     {
-        msCount = 0;
+        // Play(PlayOnStart, "1n");
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        msCount += 20;
-        _128noteCount = Mathf.RoundToInt((float)msCount / (1875.0f / (float)BPM));
+        _128noteCount = Mathf.FloorToInt(Time.time / (1.875f / BPM));
 
-        Beat = (uint)((_128noteCount / 32) % 4) + 1;
+        Beat = (_128noteCount / 32 % 4) + 1;
 
-        Bar = (uint)(_128noteCount / 128) + 1;
-    }
-
+        Bar = (_128noteCount / 128) + 1;
+    }    
+    
     // ===================================================
 
-    public void Play(AudioSource source, string beatCode)
+    public void Play(AudioSource source, string beatCode, bool IsRepeating = false)
     {
         divisor = GetDivisorFromCode(beatCode);
-        StartCoroutine(WaitToPlay(source, divisor));
-    }
-
-    private IEnumerator WaitToPlay(AudioSource source, int divisor)
-    {
-        yield return new WaitUntil(() => _128noteCount % divisor == 0);
-        source.Play();
+        StartCoroutine(WaitTo(source, divisor, true, IsRepeating));
     }
 
     public void Stop(AudioSource source, string beatCode)
     {
         divisor = GetDivisorFromCode(beatCode);
-        StartCoroutine(WaitToStop(source, divisor));
+        StartCoroutine(WaitTo(source, divisor, false));
     }
 
-    private IEnumerator WaitToStop(AudioSource source, int divisor)
+    private IEnumerator WaitTo(AudioSource source, int divisor, bool shouldPlay, bool IsRepeating = false)
     {
         yield return new WaitUntil(() => _128noteCount % divisor == 0);
 
-        source.Stop();
+        if (shouldPlay)
+        {
+            source.Play();
+        }
+        else
+        {
+            source.Stop();
+            yield return null;
+        }
+
+        if (IsRepeating && shouldPlay)
+        {
+            StartCoroutine(WaitTo(source, divisor, shouldPlay, IsRepeating));
+        }
     }
+
 
     private int GetDivisorFromCode(string beatCode)
     {

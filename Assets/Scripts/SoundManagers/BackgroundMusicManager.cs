@@ -14,14 +14,20 @@ public class BackgroundMusicManager : MonoBehaviour
         Quantize quantize = GetComponentInParent<Quantize>();
         AudioSource[] BackgroundMusic = GetComponents<AudioSource>();
 
-        quantize.Play(BackgroundMusic[currentLoop], "1b");
+        quantize.Play(BackgroundMusic[currentLoop], "8b", true);
     }
 
     [Button]
     void PlayNext()
     {
-        quantize.Stop(BackgroundMusic[currentLoop], "4b");
+        quantize.Stop(BackgroundMusic[currentLoop], "8b");
         currentLoop++;
-        quantize.Play(BackgroundMusic[currentLoop], "4b");
+
+        if (currentLoop == BackgroundMusic.Length - 1)
+        {
+            currentLoop = 0;
+        }
+
+        quantize.Play(BackgroundMusic[currentLoop], "8b", true);
     }
 }
