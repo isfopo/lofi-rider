@@ -18,7 +18,6 @@ public class ClickManager : MonoBehaviour
     [Button]
     void StartClick()
     {
-
         quantize.Play(click, "4n", true);
     }
 }

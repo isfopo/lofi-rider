@@ -1,22 +1,14 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Quantize : MonoBehaviour
 {
-    public int BPM;
-    public int _128noteCount; // change to private on release
-    public int Beat;
-    public int Bar;
-    public AudioSource PlayOnStart;
-
+    private int _128noteCount;
     private int divisor;
 
-    private void Start()
-    {
-        // Play(PlayOnStart, "1n");
-    }
+    public int BPM;
+    public int Beat;
+    public int Bar;
 
     private void Update()
     {
@@ -29,21 +21,21 @@ public class Quantize : MonoBehaviour
     
     // ===================================================
 
-    public void Play(AudioSource source, string beatCode, bool IsRepeating = false)
+    public void Play(AudioSource source, string beatCode, bool IsRepeating = false, int offset = 0)
     {
         divisor = GetDivisorFromCode(beatCode);
         StartCoroutine(WaitTo(source, divisor, true, IsRepeating));
     }
 
-    public void Stop(AudioSource source, string beatCode)
+    public void Stop(AudioSource source, string beatCode, int offset = 0)
     {
         divisor = GetDivisorFromCode(beatCode);
-        StartCoroutine(WaitTo(source, divisor, false));
+        StartCoroutine(WaitTo(source, divisor, false, false, offset));
     }
 
-    private IEnumerator WaitTo(AudioSource source, int divisor, bool shouldPlay, bool IsRepeating = false)
+    private IEnumerator WaitTo(AudioSource source, int divisor, bool shouldPlay, bool IsRepeating = false, int offset = 0)
     {
-        yield return new WaitUntil(() => _128noteCount % divisor == 0);
+        yield return new WaitUntil(() => _128noteCount % divisor == (divisor * offset));
 
         if (shouldPlay)
         {
@@ -55,7 +47,7 @@ public class Quantize : MonoBehaviour
             yield return null;
         }
 
-        if (IsRepeating && shouldPlay)
+        if (IsRepeating)
         {
             StartCoroutine(WaitTo(source, divisor, shouldPlay, IsRepeating));
         }

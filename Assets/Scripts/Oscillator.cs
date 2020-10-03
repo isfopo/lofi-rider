@@ -4,82 +4,110 @@ using UnityEngine;
 
 public class Oscillator : MonoBehaviour
 {
-    public double freq = 440.0;
-    private double baseFreq = 440.0;
-    private double increment;
-    private double phase;
-    private double sampling_freq = 48000.0;
+    private float sampling_freq = 48000.0f; // can a get unity system sampling freq?
+    private float sawPhase;
+    private float sinPhase;
 
-    private double saw;
-    private double noise;
-
+    private float freq = 440.0f;
+    private float lfoFreq;
+    private float pulseWidth;
     public AudioLowPassFilter lowPassFilter;
     public AudioChorusFilter chorusFilter;
 
-    [Range(0.0f, 1.0f)]
-    public float sawGain;
-    [Range(0.0f, 1.0f)]
-    public float noiseGain;
-
-    [Range(0.0f, 0.999f)]
-    public float pulseWidth;
+    public Vector2 freqRange;
+    public Vector2 lfoFreqRange;
+    public Vector2 pusleWidthRange;
+    public Vector2 lpRange;
+    public Vector2 chorusRateRange;
+    public Vector2 chorusDepthRange;
 
     public float tIncrement;
     private float t = 0.5f;
 
-    public float freqRatio = 10; // over 1
+    private GameObject forwardBound;
+    private GameObject backBound;
+    private float playerPosition;
 
-    System.Random rand = new System.Random();
+    private float rightGain;
+    private float leftGain;
+
+    private void Start()
+    {
+        forwardBound = GameObject.FindGameObjectWithTag("ForwardBound");
+        backBound = GameObject.FindGameObjectWithTag("BackBound");
+    }
 
     private void OnAudioFilterRead(float[] data, int channels)
     {
-        increment = freq * 2.0 * Mathf.PI / sampling_freq;
-
         for (int i = 0; i < data.Length; i += channels)
         {
-            phase += increment;
-
-            // square wave
-            if (Mathf.Sin((float)phase) + pulseWidth >= 0)
-            {
-                saw = (float)sawGain * 0.6f;
-            }
-            else
-            {
-                saw = (-(float)sawGain) * 0.6f;
-            }
-
-            // noise
-            noise = (float)(rand.NextDouble() * 2.0 - 1.0) * noiseGain;
-
-            data[i] = (float)saw + (float)noise;
-
+            data[i] = Saw(freq * Sin(lfoFreq));
 
             if (channels == 2)
             {
                 data[i + 1] = data[i];
             }
 
-            if (phase > (Mathf.PI * 2))
-            {
-                phase = 0.0;
-            }
+            // right channel
+            //data[i] *= (playerPosition * 10) + 1;
+
+            // left channel
+            //data[i + 1] *= Mathf.Abs(playerPosition * 10) + 1;
+
         }
     }
+
+    private float Saw(float freq)
+    {
+        sawPhase += freq * 2.0f * Mathf.PI / sampling_freq;
+ 
+        if (sawPhase > (Mathf.PI * 2))
+        {
+            sawPhase = 0.0f;
+        }
+
+        if (Mathf.Sin(sawPhase) + pulseWidth >= 0)
+        {
+            return 0.6f;
+        }
+        else
+        {
+            return -0.6f;
+        }
+    }
+
+    private float Sin(float freq)
+    {
+        sinPhase += freq * 2.0f * Mathf.PI / sampling_freq;
+
+        if (sinPhase > (Mathf.PI * 2))
+        {
+            sinPhase = 0.0f;
+        }
+
+        return Mathf.Sin(sinPhase);
+    }
+
 
     void Update()
     {
         ControlT();
+        ControlParams();
+    }
 
-        t = t < 0 ? 0 : t;
-        t = t > 1 ? 1 : t;
+    void ControlParams()
+    {
+        freq = Mathf.SmoothStep(freqRange.x, freqRange.y, t);
 
-        freq = Mathf.Lerp((float)freq - freqRatio / 2, (float)freq + freqRatio/2, t);
+        lfoFreq = Mathf.SmoothStep(lfoFreqRange.x, lfoFreqRange.y, t);
 
-        pulseWidth = Mathf.SmoothStep(.25f, .75f, t);
-        noiseGain = Mathf.Lerp(0.0f, 0.3f, t);
-        chorusFilter.rate = Mathf.SmoothStep(0, 1, t);
-        lowPassFilter.cutoffFrequency = Mathf.LerpUnclamped(10, 11000, t);
+        pulseWidth = Mathf.SmoothStep(pusleWidthRange.x, pusleWidthRange.y, t);
+
+        lowPassFilter.cutoffFrequency = Mathf.LerpUnclamped(lpRange.x, lpRange.y, t);
+
+        chorusFilter.rate = Mathf.SmoothStep(chorusRateRange.x, chorusRateRange.y, t);
+
+        chorusFilter.depth = Mathf.SmoothStep(chorusDepthRange.x, chorusDepthRange.y, t);
     }
 
     void ControlT()
@@ -103,5 +131,9 @@ public class Oscillator : MonoBehaviour
                 t -= tIncrement;
             }
         }
+        t = Mathf.Clamp(t, 0.0f, 1.0f);
     }
 }
+
+
+// https://www.youtube.com/watch?v=GqHFGMy_51c&ab_channel=DanoKablamo
