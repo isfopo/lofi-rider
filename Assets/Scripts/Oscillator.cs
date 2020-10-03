@@ -26,10 +26,8 @@ public class Oscillator : MonoBehaviour
 
     private GameObject forwardBound;
     private GameObject backBound;
-    private float playerPosition;
-
-    private float rightGain;
-    private float leftGain;
+    private float forwardDistance;
+    private float backDistance;
 
     private void Start()
     {
@@ -48,11 +46,11 @@ public class Oscillator : MonoBehaviour
                 data[i + 1] = data[i];
             }
 
-            // right channel
-            //data[i] *= (playerPosition * 10) + 1;
-
             // left channel
-            //data[i + 1] *= Mathf.Abs(playerPosition * 10) + 1;
+            data[i] *= map(forwardDistance, 15, 42, 0, 1);
+
+            // right channel
+            data[i + 1] *= map(backDistance, 15, 42, 0, 1);
 
         }
     }
@@ -88,25 +86,22 @@ public class Oscillator : MonoBehaviour
         return Mathf.Sin(sinPhase);
     }
 
-
     void Update()
     {
         ControlT();
         ControlParams();
+
+        forwardDistance = Vector3.Distance(forwardBound.transform.position, transform.position);
+        backDistance = Vector3.Distance(backBound.transform.position, transform.position);
     }
 
     void ControlParams()
     {
         freq = Mathf.SmoothStep(freqRange.x, freqRange.y, t);
-
         lfoFreq = Mathf.SmoothStep(lfoFreqRange.x, lfoFreqRange.y, t);
-
         pulseWidth = Mathf.SmoothStep(pusleWidthRange.x, pusleWidthRange.y, t);
-
-        lowPassFilter.cutoffFrequency = Mathf.LerpUnclamped(lpRange.x, lpRange.y, t);
-
+        lowPassFilter.cutoffFrequency = Mathf.SmoothStep(lpRange.x, lpRange.y, t);
         chorusFilter.rate = Mathf.SmoothStep(chorusRateRange.x, chorusRateRange.y, t);
-
         chorusFilter.depth = Mathf.SmoothStep(chorusDepthRange.x, chorusDepthRange.y, t);
     }
 
@@ -133,7 +128,14 @@ public class Oscillator : MonoBehaviour
         }
         t = Mathf.Clamp(t, 0.0f, 1.0f);
     }
+
+    public float map(float OldValue, float OldMin, float OldMax, float NewMin, float NewMax)
+    {
+
+        float OldRange = (OldMax - OldMin);
+        float NewRange = (NewMax - NewMin);
+        float NewValue = (((OldValue - OldMin) * NewRange) / OldRange) + NewMin;
+
+        return (NewValue);
+    }
 }
-
-
-// https://www.youtube.com/watch?v=GqHFGMy_51c&ab_channel=DanoKablamo
