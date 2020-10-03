@@ -6,7 +6,7 @@ public class ObstacleGenerator : MonoBehaviour
 {
     public GameManager gameManager;
     public GameObject[] Objects;
-    public Transform CameraPosition;
+    public GameObject Camera;
 
     public float BaseSpeed;
 
@@ -16,6 +16,7 @@ public class ObstacleGenerator : MonoBehaviour
     {
         ObstacleMaker();
         gameManager = FindObjectOfType<GameManager>();
+        Camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Update()
@@ -24,9 +25,9 @@ public class ObstacleGenerator : MonoBehaviour
 
         GameObject cs = GameObject.Find("Obstacle");
 
-        if (CameraPosition.position.x - cs.transform.position.x > 100 )
+        if (Camera.transform.position.x - cs.transform.position.x > 100 )
         {
-            // add to score here
+            gameManager.Score++;
             Destroy(cs);
         }
     }
