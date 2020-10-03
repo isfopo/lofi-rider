@@ -7,7 +7,7 @@ public class ClickManager : MonoBehaviour
 {
     public AudioSource click;
     public Quantize quantize;
-    private int currentLoop = 0;
+    // private int currentLoop = 0;
 
     void Awake()
     {
