@@ -6,17 +6,20 @@ public class PlayerController : MonoBehaviour
 
     public float jumpHeight;
 
+    public GameManager gameManager;
+
     public float BaseSpeed;
     public float SpeedMultiplier;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * (BaseSpeed + (Input.GetAxis("Horizontal") * SpeedMultiplier)));
+        transform.Translate(Vector3.right * Time.deltaTime * (gameManager.GlobalSpeed + (Input.GetAxis("Horizontal") * SpeedMultiplier)));
 
         if (Input.GetAxis("Vertical") > 0 && GameObject.FindGameObjectWithTag("Player").transform.position.y < 0.1 )
         {

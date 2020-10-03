@@ -119,11 +119,11 @@ public class Oscillator : MonoBehaviour
         {
             if (t < 0.55f)
             {
-                t += tIncrement;
+                t += tIncrement * 2;
             }
             else if (t > 0.45f)
             {
-                t -= tIncrement;
+                t -= tIncrement * 2;
             }
         }
         t = Mathf.Clamp(t, 0.0f, 1.0f);

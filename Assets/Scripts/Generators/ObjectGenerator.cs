@@ -8,17 +8,19 @@ public class ObjectGenerator : MonoBehaviour
     public Transform CameraPosition;
 
     public float BaseSpeed;
+    public GameManager gameManager;
 
     public Vector2 RandomGenerationRange;
 
     void Start()
     {
         ObjectMaker();
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        transform.Translate(Vector3.right * BaseSpeed * Time.deltaTime);
+        transform.Translate(Vector3.right * gameManager.GlobalSpeed * Time.deltaTime);
 
         GameObject cs = GameObject.Find(Object.name);
 
@@ -35,6 +37,12 @@ public class ObjectGenerator : MonoBehaviour
 
         clone.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
-        Invoke(nameof(ObjectMaker), Random.Range(RandomGenerationRange.x, RandomGenerationRange.y));
+        Invoke(
+            nameof(ObjectMaker),
+            Random.Range(
+                RandomGenerationRange.x * gameManager.GlobalSpeed,
+                RandomGenerationRange.y * gameManager.GlobalSpeed
+            )
+        );
     }
 }
