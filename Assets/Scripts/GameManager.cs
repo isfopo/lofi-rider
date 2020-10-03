@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public int Score = 1;
+    public int Score;
     public float GlobalSpeed;
     public float StartSpeed;
 
+    public bool GameHasStarted;
 
     // Start is called before the first frame update
     void Start()
@@ -18,10 +19,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Score = Score <= 0 ? 0 : Score;
+        Score = Score <= 1 ? 1 : Score;
 
-        GlobalSpeed = Mathf.Log(Score, 2) + StartSpeed;
-
-        
+        if (GameHasStarted)
+        {
+            GlobalSpeed = Mathf.Log(Score, 2) + StartSpeed;
+        }
     }
 }

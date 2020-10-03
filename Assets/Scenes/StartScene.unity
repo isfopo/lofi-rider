@@ -313,8 +313,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00c8e0e2fec7f444f9d9d256416ca449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Score: 0
+  Score: 1
   GlobalSpeed: 0
+  StartSpeed: 8
+  GameHasStarted: 0
 --- !u!1 &1497109612 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 60316652985135113, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
