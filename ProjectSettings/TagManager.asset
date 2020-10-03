@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Land
+  - BG1
+  - ForwardBound
+  - BackBound
   layers:
   - Default
   - TransparentFX
