@@ -25,10 +25,13 @@ public class ObstacleGenerator : MonoBehaviour
 
         GameObject cs = GameObject.Find("Obstacle");
 
-        if (Camera.transform.position.x - cs.transform.position.x > 100 )
+        if (Camera != null)
         {
-            gameManager.Score++;
-            Destroy(cs);
+            if (Camera.transform.position.x - cs.transform.position.x > 100 )
+            {
+                gameManager.Score++;
+                Destroy(cs);
+            }
         }
     }
 
