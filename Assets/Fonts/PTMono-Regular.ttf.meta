@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f2adc333d5094cfba5641984c7e88e3
+guid: d32b9ee7467524ef18781786b14ba03c
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -8,9 +8,8 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Rubik Mono One
   fontNames:
-  - Rubik Mono One
+  - PT Mono
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
