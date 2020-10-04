@@ -49,34 +49,6 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!244 &-7352898036412256970
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: d3b149ac5178c439caf3b1343ac1c7a4
-  m_EffectName: Duck Volume
-  m_MixLevel: 1b5b98c45b02e478e83c7f8335e6f8cf
-  m_Parameters:
-  - m_ParameterName: Threshold
-    m_GUID: 6cba9fbcc0f5e4dcf98d0fb13d6ed6e0
-  - m_ParameterName: Ratio
-    m_GUID: 2e80a52ae24a94e2488998d08dba9cf1
-  - m_ParameterName: Attack Time
-    m_GUID: fd80aba207d484e11b51b36dc4d0a197
-  - m_ParameterName: Release Time
-    m_GUID: 06c033e49167e48b59e6243e8e382f02
-  - m_ParameterName: Make-up Gain
-    m_GUID: de0f5b2b7f5d54520b635f66f9f4958d
-  - m_ParameterName: Knee
-    m_GUID: 646b840337e904794b3856ce4162eb57
-  - m_ParameterName: Sidechain Mix
-    m_GUID: 6120e10fb3606440890dc52b38f7a018
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!243 &-6311911793659916612
 AudioMixerGroupController:
   m_ObjectHideFlags: 0
@@ -95,7 +67,6 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: -577240801528228717}
-  - {fileID: -7352898036412256970}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
@@ -254,10 +225,10 @@ AudioMixerSnapshotController:
     e38160292724f4d2b8aeec052c1b5644: -34.9
     8f4af3b9cacac4faaadc882f96ce157d: 2
     2e80a52ae24a94e2488998d08dba9cf1: 10
-    3f56613adc12142fe8d1a55f40e3ac7c: -10.345207
+    3f56613adc12142fe8d1a55f40e3ac7c: -14.816613
     ca6db14c3cb5746d49f417cb1909e5bd: 0
     6cba9fbcc0f5e4dcf98d0fb13d6ed6e0: -80
-    8d73ab2dfb35e4e759e9b14f87c5e013: -33.611675
+    8d73ab2dfb35e4e759e9b14f87c5e013: -29.519157
     424e213d032f24a259e69c599e6c03c8: 0.001
     830c79ad5e272411fa89edc49faafcee: 0.015
     ae2cb8ed5f7ea4f1b9123f5bc2a7e40a: -14.816608
@@ -378,7 +349,7 @@ AudioMixerEffectController:
   m_EffectName: Send
   m_MixLevel: 6475b8840cce04a91b645f8cd8e502e8
   m_Parameters: []
-  m_SendTarget: {fileID: -7352898036412256970}
+  m_SendTarget: {fileID: 0}
   m_EnableWetMix: 0
   m_Bypass: 0
 --- !u!243 &9185919102354719874
