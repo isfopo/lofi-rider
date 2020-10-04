@@ -529,7 +529,9 @@ MonoBehaviour:
   - {fileID: 1341447177}
   - {fileID: 1341447178}
   - {fileID: 1341447176}
+  ScoreForNext: 040000000a00000010000000
   quantize: {fileID: 1843799515}
+  gameManager: {fileID: 0}
 --- !u!4 &1341447175
 Transform:
   m_ObjectHideFlags: 0

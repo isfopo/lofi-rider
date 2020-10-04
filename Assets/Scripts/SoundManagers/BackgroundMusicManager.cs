@@ -6,15 +6,27 @@ using UnityEngine;
 public class BackgroundMusicManager : MonoBehaviour
 {
     public AudioSource[] BackgroundMusic;
+    public int[] ScoreForNext;
     public Quantize quantize;
+    public GameManager gameManager;
+
     private int currentLoop = 0;
 
     void Awake()
     {
-        Quantize quantize = GetComponentInParent<Quantize>();
-        AudioSource[] BackgroundMusic = GetComponents<AudioSource>();
+        quantize = GetComponentInParent<Quantize>();
+        BackgroundMusic = GetComponents<AudioSource>();
+        gameManager = FindObjectOfType<GameManager>();
 
         quantize.Play(BackgroundMusic[currentLoop], "8b", true);
+    }
+
+    private void Update()
+    {
+        if (gameManager.Score >= ScoreForNext[currentLoop])
+        {
+            PlayNext();
+        }
     }
 
     [Button]
@@ -25,7 +37,7 @@ public class BackgroundMusicManager : MonoBehaviour
 
         if (currentLoop == BackgroundMusic.Length - 1)
         {
-            currentLoop = 0;
+            // end of song, call next scene
         }
 
         quantize.Play(BackgroundMusic[currentLoop], "8b", true);
