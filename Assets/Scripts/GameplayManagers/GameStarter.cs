@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameStarter : MonoBehaviour
 {
@@ -16,8 +15,7 @@ public class GameStarter : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            gameManager.GameHasStarted = true;
-            SceneManager.LoadScene("TestScene");
+            gameManager.CallNextScene();
         }
     }
 }

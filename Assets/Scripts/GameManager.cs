@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
     public int Score;
     public float GlobalSpeed;
     public float StartSpeed;
+    public string[] SceneNames;
 
     public bool GameHasStarted;
 
@@ -18,5 +20,12 @@ public class GameManager : MonoBehaviour
         {
             GlobalSpeed = Mathf.Log(Score, 2) + StartSpeed;
         }
+    }
+
+    public void CallNextScene()
+    {
+        GameHasStarted = true;
+        SceneManager.LoadScene(
+            SceneNames[Random.Range(0,SceneNames.Length - 1)]);
     }
 }
