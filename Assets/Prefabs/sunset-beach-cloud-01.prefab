@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1372341058891006256}
   - component: {fileID: 3674050708740590770}
+  - component: {fileID: 8046669386225397194}
   - component: {fileID: 1006877089666650338}
   m_Layer: 0
   m_Name: sunset-beach-cloud-01
@@ -83,6 +84,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8046669386225397194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7708679393707708675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a03c6e1f34cd34e1c9c61e05eff8681f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 3674050708740590770}
+  levelDesigner: {fileID: 0}
+  themeSelection: 1
 --- !u!114 &1006877089666650338
 MonoBehaviour:
   m_ObjectHideFlags: 0

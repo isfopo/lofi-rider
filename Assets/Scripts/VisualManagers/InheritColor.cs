@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+[ExecuteAlways]
 public class InheritColor : MonoBehaviour
 {
     public enum ThemeSelection
@@ -24,8 +24,7 @@ public class InheritColor : MonoBehaviour
 
     void Update()
     {
-        levelDesigner = GetComponentInParent<LevelDesigner>();
-        Debug.Log(themeSelection);
+        levelDesigner = FindObjectOfType<LevelDesigner>();
         SelectTheme(themeSelection);
     }
 

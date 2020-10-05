@@ -5,7 +5,7 @@ using UnityEngine;
 public class ObjectGenerator : MonoBehaviour
 {
     public GameObject Object;
-    public Transform CameraPosition;
+    public GameObject Camera;
 
     public float BaseSpeed;
     public GameManager gameManager;
@@ -16,32 +16,37 @@ public class ObjectGenerator : MonoBehaviour
     {
         ObjectMaker();
         gameManager = FindObjectOfType<GameManager>();
+        Camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
 
     void Update()
     {
         transform.Translate(Vector3.right * gameManager.GlobalSpeed * Time.deltaTime);
 
-        GameObject cs = GameObject.Find(Object.name);
+        GameObject cs = GameObject.Find("Object");
+        Debug.Log(cs.name);
 
-        if (CameraPosition.position.x - cs.transform.position.x > 100)
+        if (Camera != null)
         {
-            Destroy(cs);
+            if (Camera.transform.position.x - cs.transform.position.x > 100)
+            {
+                Destroy(cs);
+            }
         }
     }
 
     void ObjectMaker()
     {
         GameObject clone = Instantiate(Object, transform.position, Quaternion.identity);
-        clone.name = Object.name;
+        clone.name = "Object";
 
         clone.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
 
         Invoke(
             nameof(ObjectMaker),
             Random.Range(
-                RandomGenerationRange.x * gameManager.GlobalSpeed,
-                RandomGenerationRange.y * gameManager.GlobalSpeed
+                RandomGenerationRange.x * 8,
+                RandomGenerationRange.y * 8
             )
         );
     }
