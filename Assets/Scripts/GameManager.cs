@@ -1,19 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
     public int Score;
     public float GlobalSpeed;
     public float StartSpeed;
-    public string[] SceneNames;
 
     public bool GameHasStarted;
 
     public Animator transition;
     public float transisitionTime = 1;
+
+    public AudioMixerSnapshot In;
+    public AudioMixerSnapshot Out;
 
     void Update()
     {
@@ -42,10 +45,12 @@ public class GameManager : MonoBehaviour
     IEnumerator LoadScene(int levelIndex)
     {
         transition.SetTrigger("StartFade");
+        Out.TransitionTo(.5f);
 
         yield return new WaitForSeconds(transisitionTime);
 
-        transition.SetTrigger("EndFade");
         SceneManager.LoadScene(levelIndex);
+        transition.SetTrigger("EndFade");
+        In.TransitionTo(.5f);
     }
 }
