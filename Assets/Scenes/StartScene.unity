@@ -742,6 +742,8 @@ MonoBehaviour:
   Score: 1
   GlobalSpeed: 0
   StartSpeed: 8
+  SceneNames:
+  - TestScene
   GameHasStarted: 0
 --- !u!1 &1497109612 stripped
 GameObject:

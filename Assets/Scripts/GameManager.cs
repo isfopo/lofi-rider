@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     public bool GameHasStarted;
 
+    public Animator transition;
+    public float transisitionTime = 1;
+
     void Update()
     {
         Score = Score <= 1 ? 1 : Score;
@@ -20,12 +23,29 @@ public class GameManager : MonoBehaviour
         {
             GlobalSpeed = Mathf.Log(Score, 2) + StartSpeed;
         }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            CallNextScene();
+        }
     }
 
     public void CallNextScene()
     {
         GameHasStarted = true;
-        SceneManager.LoadScene(
-            SceneNames[Random.Range(0,SceneNames.Length - 1)]);
+        StartCoroutine(
+            LoadScene(
+                Random.Range(1, SceneManager.sceneCountInBuildSettings - 1))
+            );
+    }
+
+    IEnumerator LoadScene(int levelIndex)
+    {
+        transition.SetTrigger("StartFade");
+
+        yield return new WaitForSeconds(transisitionTime);
+
+        transition.SetTrigger("EndFade");
+        SceneManager.LoadScene(levelIndex);
     }
 }
