@@ -51,6 +51,5 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
         transition.SetTrigger("EndFade");
         In.TransitionTo(.5f);
-        Debug.Log("Loaded:" + SceneManager.GetActiveScene().name);
     }
 }
