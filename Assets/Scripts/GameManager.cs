@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Audio;
@@ -24,7 +23,7 @@ public class GameManager : MonoBehaviour
 
         if (GameHasStarted)
         {
-            GlobalSpeed = Mathf.Log(Score, 2) + StartSpeed;
+            GlobalSpeed = Mathf.Log(Score, 2) * 2 + StartSpeed;
         }
 
         if (Input.GetButtonDown("Fire1"))
@@ -52,5 +51,6 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
         transition.SetTrigger("EndFade");
         In.TransitionTo(.5f);
+        Debug.Log("Loaded:" + SceneManager.GetActiveScene().name);
     }
 }

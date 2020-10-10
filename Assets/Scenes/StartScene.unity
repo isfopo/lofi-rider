@@ -663,6 +663,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5606580314762564752, guid: 023fcd492798048d5843ffb4ab7a8f32, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5606580314762564755, guid: 023fcd492798048d5843ffb4ab7a8f32, type: 3}
+      propertyPath: orthographic size
+      value: 14.346254
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 023fcd492798048d5843ffb4ab7a8f32, type: 3}
 --- !u!1 &1260574614
@@ -805,9 +813,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Score: 1
   GlobalSpeed: 0
-  StartSpeed: 8
-  SceneNames:
-  - TestScene
+  StartSpeed: 6
   GameHasStarted: 0
   transition: {fileID: 533523047}
   transisitionTime: 1
@@ -837,6 +843,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 60316652737938988, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 60316652737938991, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 60316652985135110, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.717363
@@ -884,6 +898,22 @@ PrefabInstance:
     - target: {fileID: 60316652985135113, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
       propertyPath: m_Name
       value: Bounds
+      objectReference: {fileID: 0}
+    - target: {fileID: 60316652985135113, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60316653176870056, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 60316653176870059, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 60316653534155217, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23ad1e07e37c744bcb99093fa1bc844f, type: 3}
@@ -997,6 +1027,10 @@ PrefabInstance:
     - target: {fileID: 7056503080090958887, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
       propertyPath: m_Name
       value: Runner
+      objectReference: {fileID: 0}
+    - target: {fileID: 7056503080090958887, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7056503080090958890, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
       propertyPath: m_LocalPosition.x
