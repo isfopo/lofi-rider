@@ -21,7 +21,6 @@ public class DDOL : MonoBehaviour
             currentScene = SceneManager.GetActiveScene().name;
             if (lastScene != currentScene)
             {
-                Debug.Log("New scene");
                 transform.position = OriginalPosition;
             }
             lastScene = currentScene;

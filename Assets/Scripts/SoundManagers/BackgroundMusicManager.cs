@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class BackgroundMusicManager : MonoBehaviour
 {
+    [InfoBox("Add audio sources for each loop", EInfoBoxType.Normal)]
     public AudioSource[] BackgroundMusic;
+    [InfoBox("Add at which point the next loop starts", EInfoBoxType.Normal)]
     public int[] ScoreForNext;
-    public Quantize quantize;
-    public GameManager gameManager;
+
+    private Quantize quantize;
+    private GameManager gameManager;
 
     private int currentLoop = 0;
 
@@ -29,7 +32,6 @@ public class BackgroundMusicManager : MonoBehaviour
         }
     }
 
-    [Button]
     void PlayNext()
     {
         quantize.Stop(BackgroundMusic[currentLoop], "8b");

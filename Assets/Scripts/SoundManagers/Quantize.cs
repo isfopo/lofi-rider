@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using NaughtyAttributes;
 using UnityEngine;
 
 public class Quantize : MonoBehaviour
@@ -6,9 +7,18 @@ public class Quantize : MonoBehaviour
     private int _128noteCount;
     private int divisor;
 
+    [InfoBox("Add global BPM", EInfoBoxType.Normal)]
     public int BPM;
     public int Beat;
     public int Bar;
+
+    private void Start()
+    {
+        if ( BPM == 0 )
+        {
+            Debug.LogError("BPM must be greater than zero!");
+        }
+    }
 
     private void Update()
     {
