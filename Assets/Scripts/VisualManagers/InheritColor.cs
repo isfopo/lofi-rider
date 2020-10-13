@@ -25,7 +25,11 @@ public class InheritColor : MonoBehaviour
     void Update()
     {
         levelDesigner = FindObjectOfType<LevelDesigner>();
-        SelectTheme(themeSelection);
+
+        if (levelDesigner != null )
+        {
+            SelectTheme(themeSelection);
+        }
     }
 
     void SelectTheme(ThemeSelection themeSelection)
