@@ -35,10 +35,11 @@ public class GameManager : MonoBehaviour
     public void CallNextScene()
     {
         GameHasStarted = true;
-        StartCoroutine(
-            LoadScene(
-                Random.Range(1, SceneManager.sceneCountInBuildSettings - 1))
-            );
+        Score = 0;
+        StartCoroutine
+        (
+            LoadScene(SceneManager.GetActiveScene().buildIndex + 1)
+        );
     }
 
     IEnumerator LoadScene(int levelIndex)

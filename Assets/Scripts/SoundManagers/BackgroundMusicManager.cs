@@ -37,9 +37,9 @@ public class BackgroundMusicManager : MonoBehaviour
         quantize.Stop(BackgroundMusic[currentLoop], "8b");
         currentLoop++;
 
-        if (currentLoop == BackgroundMusic.Length - 1)
+        if (currentLoop == BackgroundMusic.Length)
         {
-            // end of song, call next scene
+            gameManager.CallNextScene();
         }
 
         quantize.Play(BackgroundMusic[currentLoop], "8b", true);
