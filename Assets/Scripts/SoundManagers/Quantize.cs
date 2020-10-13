@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using NaughtyAttributes;
 using UnityEngine;
+using System;
 
 public class Quantize : MonoBehaviour
 {
@@ -61,6 +62,19 @@ public class Quantize : MonoBehaviour
         {
             StartCoroutine(WaitTo(source, divisor, shouldPlay, IsRepeating));
         }
+    }
+
+    public void QuantizeCall(Action call, string beatCode, int offset = 0)
+    {
+        divisor = GetDivisorFromCode(beatCode);
+        StartCoroutine(WaitToCall(call, divisor, offset));
+    }
+
+    private IEnumerator WaitToCall(Action call, int divisor, int offset = 0)
+    {
+        yield return new WaitUntil(() => _128noteCount % divisor == (divisor * offset));
+
+        call();
     }
 
 
