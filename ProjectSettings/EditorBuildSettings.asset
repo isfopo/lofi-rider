@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScene.unity
     guid: 251aac508c1454860a10c41a9bfedc27
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/MorningScene.unity
+    guid: c1ef7728bbb85403680ac045ff45aba1
+  - enabled: 1
+    path: Assets/Scenes/SunsetScene.unity
     guid: c698ecb0cd7d74b32bb4c305fe61aae7
+  - enabled: 1
+    path: Assets/Scenes/NightScene.unity
+    guid: b7b8db7a4a79947e5ba3832faf727c33
   m_configObjects: {}
