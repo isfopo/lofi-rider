@@ -26,8 +26,9 @@ public class GameManager : MonoBehaviour
             GlobalSpeed = Mathf.Log(Score, 2) * 2 + StartSpeed;
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if ( !GameHasStarted && Input.GetAxis("Vertical") > 0.9f)
         {
+            Debug.Log(GameHasStarted);
             CallNextScene();
         }
     }
