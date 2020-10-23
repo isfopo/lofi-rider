@@ -9,6 +9,7 @@ public class BackgroundMusicManager : MonoBehaviour
     public AudioSource[] BackgroundMusic;
     [InfoBox("Add at which point the next loop starts", EInfoBoxType.Normal)]
     public int[] ScoreForNext;
+    public string[] Beatcodes;
 
     private Quantize quantize;
     private GameManager gameManager;
@@ -21,7 +22,7 @@ public class BackgroundMusicManager : MonoBehaviour
         BackgroundMusic = GetComponents<AudioSource>();
         gameManager = FindObjectOfType<GameManager>();
 
-        quantize.Play(BackgroundMusic[currentLoop], "8b", true);
+        quantize.Play(BackgroundMusic[currentLoop], Beatcodes[currentLoop], true);
     }
 
     private void Update()
@@ -34,14 +35,14 @@ public class BackgroundMusicManager : MonoBehaviour
 
     void PlayNext()
     {
-        quantize.Stop(BackgroundMusic[currentLoop], "8b");
+        quantize.Stop(BackgroundMusic[currentLoop], Beatcodes[currentLoop]);
         currentLoop++;
 
         if (currentLoop == BackgroundMusic.Length - 1)
         {
-            quantize.QuantizeCall(() => gameManager.CallNextScene(), "8b");
+            quantize.QuantizeCall(() => gameManager.CallNextScene(), Beatcodes[currentLoop]);
         }
 
-        quantize.Play(BackgroundMusic[currentLoop], "8b", true);
+        quantize.Play(BackgroundMusic[currentLoop], Beatcodes[currentLoop], true);
     }
 }
