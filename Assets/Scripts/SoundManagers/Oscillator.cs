@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Oscillator : MonoBehaviour
 {
-    private float sampling_freq = 48000.0f; // can a get unity system sampling freq?
+    private float sampling_freq; // can a get unity system sampling freq?
     private float sawPhase;
     private float sinPhase;
 
@@ -31,6 +29,7 @@ public class Oscillator : MonoBehaviour
 
     private void Start()
     {
+        sampling_freq = AudioSettings.GetConfiguration().sampleRate;
         forwardBound = GameObject.FindGameObjectWithTag("ForwardBound");
         backBound = GameObject.FindGameObjectWithTag("BackBound");
     }

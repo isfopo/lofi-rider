@@ -28,7 +28,11 @@ public class GameManager : MonoBehaviour
 
         if ( !GameHasStarted && Input.GetAxis("Vertical") > 0.9f)
         {
-            Debug.Log(GameHasStarted);
+            CallNextScene();
+        }
+
+        if (Input.GetButtonDown("Fire1"))
+        {
             CallNextScene();
         }
     }
@@ -37,10 +41,17 @@ public class GameManager : MonoBehaviour
     {
         GameHasStarted = true;
         Score = 0;
-        StartCoroutine
-        (
-            LoadScene(SceneManager.GetActiveScene().buildIndex + 1)
-        );
+        if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1)
+        {
+            StartCoroutine(LoadScene(1));
+        }
+        else
+        {
+            StartCoroutine
+            (
+                LoadScene(SceneManager.GetActiveScene().buildIndex + 1)
+            );
+        }
     }
 
     IEnumerator LoadScene(int levelIndex)

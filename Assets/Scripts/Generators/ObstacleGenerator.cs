@@ -8,8 +8,6 @@ public class ObstacleGenerator : MonoBehaviour
     public GameObject[] Objects;
     public GameObject Camera;
 
-    public float BaseSpeed;
-
     public Vector2 RandomGenerationRange;
 
     void Start()

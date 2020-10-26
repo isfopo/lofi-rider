@@ -10,8 +10,15 @@ public class DDOL : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         OriginalPosition = transform.position;
+
+        DontDestroyOnLoad(gameObject);
+
+        if (GameObject.Find(gameObject.name)
+                  && GameObject.Find(gameObject.name) != gameObject)
+        {
+            Destroy(GameObject.Find(gameObject.name));
+        }
     }
 
     private void Update()
