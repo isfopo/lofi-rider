@@ -322,7 +322,6 @@ MonoBehaviour:
   - {fileID: 6947752931815825697, guid: 024780cf911e743fcb1f5b978efc2877, type: 3}
   - {fileID: 5090253751474466579, guid: 161cddd8aacf046768616465aa1eaaba, type: 3}
   Camera: {fileID: 0}
-  BaseSpeed: 8
   RandomGenerationRange: {x: 2, y: 5}
 --- !u!4 &423072068
 Transform:
@@ -735,7 +734,7 @@ MonoBehaviour:
   - {fileID: 1341447178}
   - {fileID: 1341447177}
   - {fileID: 1341447176}
-  ScoreForNext: 080000000a0000001c0000001e00000032000000340000005200000060000000
+  ScoreForNext: 08000000100000001c0000002400000032000000460000005200000060000000
   Beatcodes:
   - 2b
   - 4b
