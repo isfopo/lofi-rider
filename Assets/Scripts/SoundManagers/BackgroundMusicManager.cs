@@ -7,7 +7,7 @@ public class BackgroundMusicManager : MonoBehaviour
 {
     [InfoBox("Add audio sources for each loop", EInfoBoxType.Normal)]
     public AudioSource[] BackgroundMusic;
-    [InfoBox("Add at which point the next loop starts", EInfoBoxType.Normal)]
+    [InfoBox("Add at which score the next loop starts", EInfoBoxType.Normal)]
     public int[] ScoreForNext;
     public string[] Beatcodes;
 
@@ -35,14 +35,21 @@ public class BackgroundMusicManager : MonoBehaviour
 
     void PlayNext()
     {
-        quantize.Stop(BackgroundMusic[currentLoop], Beatcodes[currentLoop]);
-        currentLoop++;
-
-        if (currentLoop == BackgroundMusic.Length - 1)
+        try
         {
-            quantize.QuantizeCall(() => gameManager.CallNextScene(), Beatcodes[currentLoop]);
-        }
+            quantize.Stop(BackgroundMusic[currentLoop], Beatcodes[currentLoop +1]);
+            currentLoop++;
 
-        quantize.Play(BackgroundMusic[currentLoop], Beatcodes[currentLoop], true);
+            if (currentLoop == BackgroundMusic.Length)
+            {
+                quantize.QuantizeCall(() => gameManager.CallNextScene(), Beatcodes[currentLoop - 1]);
+            }
+
+            quantize.Play(BackgroundMusic[currentLoop], Beatcodes[currentLoop], true);
+        }
+        catch (System.IndexOutOfRangeException)
+        {
+            Debug.Log("Ready for next scene");
+        }
     }
 }

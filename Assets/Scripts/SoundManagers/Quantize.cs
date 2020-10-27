@@ -28,6 +28,7 @@ public class Quantize : MonoBehaviour
         Beat = (_128noteCount / 32 % 4) + 1;
 
         Bar = (_128noteCount / 128) + 1;
+
     }    
     
     // ===================================================
@@ -35,13 +36,18 @@ public class Quantize : MonoBehaviour
     public void Play(AudioSource source, string beatCode, bool IsRepeating = false, int offset = 0)
     {
         divisor = GetDivisorFromCode(beatCode);
-        StartCoroutine(WaitTo(source, divisor, true, IsRepeating));
+        StartCoroutine(WaitTo(source, divisor, true, IsRepeating, offset));
     }
 
     public void Stop(AudioSource source, string beatCode, int offset = 0)
     {
         divisor = GetDivisorFromCode(beatCode);
         StartCoroutine(WaitTo(source, divisor, false, false, offset));
+    }
+
+    public void StopRepeat(AudioSource source)
+    {
+        source.loop = false;
     }
 
     private IEnumerator WaitTo(AudioSource source, int divisor, bool shouldPlay, bool IsRepeating = false, int offset = 0)
@@ -51,18 +57,20 @@ public class Quantize : MonoBehaviour
         if (shouldPlay)
         {
             source.Play();
+
+            if (IsRepeating)
+            {
+                source.loop = true;
+            }
         }
         else
         {
             source.Stop();
             yield return null;
         }
-
-        if (IsRepeating)
-        {
-            StartCoroutine(WaitTo(source, divisor, shouldPlay, IsRepeating));
-        }
     }
+
+    // ===================================================
 
     public void QuantizeCall(Action call, string beatCode, int offset = 0)
     {
@@ -77,6 +85,7 @@ public class Quantize : MonoBehaviour
         call();
     }
 
+    // ===================================================
 
     private int GetDivisorFromCode(string beatCode)
     {
@@ -90,7 +99,7 @@ public class Quantize : MonoBehaviour
         }
         else
         {
-            throw new System.Exception("Code must end with 'n' for note or 'b' for bar");
+            throw new Exception("Code must end with 'n' for note or 'b' for bar");
         }
     }
 }
