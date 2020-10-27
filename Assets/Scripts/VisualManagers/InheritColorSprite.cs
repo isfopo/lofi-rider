@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteAlways]
-public class InheritColor : MonoBehaviour
+public class InheritColorSprite : MonoBehaviour
 {
     public enum ThemeSelection
     {
