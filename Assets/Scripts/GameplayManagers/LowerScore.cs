@@ -15,5 +15,14 @@ public class LowerScore : MonoBehaviour
         {
             gameManager.Score--;
         }
+        else if (other.name == "Collectable")
+        {
+            GameObject otherObject = other.gameObject;
+            DestroyCollectable destroyCollectable = otherObject.GetComponent<DestroyCollectable>();
+            destroyCollectable.Collect();
+
+
+            gameManager.Score++;
+        }
     }
 }
