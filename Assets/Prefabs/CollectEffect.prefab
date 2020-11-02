@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1719930111802178926}
   - component: {fileID: 4452040988976053940}
   - component: {fileID: 7855685338404654322}
+  - component: {fileID: 6395096149831580321}
+  - component: {fileID: -7381600779931032705}
   - component: {fileID: 6157713456306246407}
   - component: {fileID: 8007050923090827429}
   m_Layer: 0
@@ -173,7 +175,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -183,7 +185,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -288,9 +290,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startColor:
       serializedVersion: 2
-      minMaxState: 1
+      minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.53333336, b: 0.98060817, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.9433962, g: 0.5740477, b: 0.8389597, a: 1}
@@ -674,7 +676,7 @@ ParticleSystem:
     gravityModifier:
       serializedVersion: 2
       minMaxState: 0
-      scalar: -1
+      scalar: -2
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -4814,6 +4816,35 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!114 &6395096149831580321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153375264328473375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efb5837284d9f4604b184a89358ae3e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ps: {fileID: 7855685338404654322}
+  levelDesigner: {fileID: 0}
+  themeSelection: 2
+--- !u!114 &-7381600779931032705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8153375264328473375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d41c288e575eb84aac00fc3b880a5d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  speed: 5
 --- !u!82 &6157713456306246407
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4824,7 +4855,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6531630673630471677, guid: 1615fad22971346c2943c33afd85e00d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 525261ecbfd7ced4a8d7ffd7affec954, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6c375301ce64f4ddca3cde278608e0b6, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
