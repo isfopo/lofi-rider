@@ -27,7 +27,6 @@ public class ObstacleGenerator : MonoBehaviour
         {
             if (Camera.transform.position.x - cs.transform.position.x > 100 )
             {
-                gameManager.Score++;
                 Destroy(cs);
             }
         }
