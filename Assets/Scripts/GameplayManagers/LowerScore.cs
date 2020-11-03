@@ -3,6 +3,7 @@
 public class LowerScore : MonoBehaviour
 {
     public GameManager gameManager;
+    public AudioSource damageSound;
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class LowerScore : MonoBehaviour
     {
         if (other.name == "Obstacle")
         {
+            damageSound.Play();
             gameManager.Score--;
         }
         else if (other.name == "Collectable")

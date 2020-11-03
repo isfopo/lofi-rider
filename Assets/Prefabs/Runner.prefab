@@ -4894,7 +4894,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -3518479764350252040, guid: c0276b2ecfdc046e6b5d372943bf14e8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9113781, g: 0.6808473, b: 0.9433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7402,12 +7402,12 @@ AudioSource:
   m_GameObject: {fileID: 7056503080524272585}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -247672837729165195, guid: 1615fad22971346c2943c33afd85e00d, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 1f6dd1b09be774d3c9f7b6ba6a3b0851, type: 3}
+  OutputAudioMixerGroup: {fileID: 6531630673630471677, guid: 1615fad22971346c2943c33afd85e00d, type: 2}
+  m_audioClip: {fileID: 8300000, guid: cec2b6fa5463942c58cc8a2ffdc3a1da, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -7528,6 +7528,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  damageSound: {fileID: 7056503080524272589}
 --- !u!1 &7056503080827995748
 GameObject:
   m_ObjectHideFlags: 0
