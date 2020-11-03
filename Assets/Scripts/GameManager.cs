@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public int Score;
     public float GlobalSpeed;
     public float StartSpeed;
+    public bool inDebug;
+    private bool isPaused = false;
 
     public bool GameHasStarted;
 
@@ -16,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public AudioMixerSnapshot In;
     public AudioMixerSnapshot Out;
+    public AudioMixerSnapshot Paused;
+    public GameObject PauseScreen;
 
     void Update()
     {
@@ -31,9 +35,29 @@ public class GameManager : MonoBehaviour
             CallNextScene();
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && inDebug)
         {
             CallNextScene();
+        }
+
+        if (Input.GetButtonDown("Pause"))
+        {
+            Debug.Log(PauseScreen);
+
+            if (!isPaused)
+            {
+                isPaused = true;
+                Paused.TransitionTo(0f);
+                //PauseScreen.SetActive(true);
+                Time.timeScale = 0;
+            }
+            else
+            {
+                isPaused = false;
+                In.TransitionTo(0f);
+                //PauseScreen.SetActive(false);
+                Time.timeScale = 1;
+            }
         }
     }
 
