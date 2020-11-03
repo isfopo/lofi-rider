@@ -1207,6 +1207,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826368653}
   m_CullTransparentMesh: 0
+--- !u!1 &968489732 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7056503080524272585, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
+  m_PrefabInstance: {fileID: 1763399759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &968489734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968489732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67464b1cd012f42d7af6767690a9f0fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 1276092600}
+  damageSound: {fileID: 968489736}
+  secondsToReset: 1
+--- !u!82 &968489736 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7056503080524272589, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
+  m_PrefabInstance: {fileID: 1763399759}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1020804228
 GameObject:
   m_ObjectHideFlags: 0
@@ -1949,7 +1974,8 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7056503080524272587, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 86387c16d83e243bfb1829f4d92acbb2, type: 3}
 --- !u!1 &1837923548
 GameObject:
