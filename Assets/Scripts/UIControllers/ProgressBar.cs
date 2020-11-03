@@ -15,7 +15,7 @@ public class ProgressBar : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
         backgroundMusicManager = FindObjectOfType<BackgroundMusicManager>();
 
-        _slider.maxValue = backgroundMusicManager.ScoreForNext[backgroundMusicManager.ScoreForNext.Length - 1];
+        _slider.maxValue = backgroundMusicManager.FinalScore;
     }
 
     void Update()
