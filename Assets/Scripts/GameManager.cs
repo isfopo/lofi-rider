@@ -21,6 +21,11 @@ public class GameManager : MonoBehaviour
     public AudioMixerSnapshot Paused;
     public GameObject PauseScreen;
 
+    private void Start()
+    {
+        DontDestroyOnLoad(PauseScreen);
+    }
+
     void Update()
     {
         Score = Score <= 1 ? 1 : Score;
@@ -42,20 +47,18 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetButtonDown("Pause"))
         {
-            Debug.Log(PauseScreen);
-
             if (!isPaused)
             {
                 isPaused = true;
                 Paused.TransitionTo(0f);
-                //PauseScreen.SetActive(true);
+                PauseScreen.SetActive(true);
                 Time.timeScale = 0;
             }
             else
             {
                 isPaused = false;
                 In.TransitionTo(0f);
-                //PauseScreen.SetActive(false);
+                PauseScreen.SetActive(false);
                 Time.timeScale = 1;
             }
         }
