@@ -23,7 +23,7 @@ public class CollectableGenerator : MonoBehaviour
 
         GameObject cs = GameObject.Find("Collectable");
 
-        if (Camera != null)
+        if (Camera != null && cs != null)
         {
             if (Camera.transform.position.x - cs.transform.position.x > 100 )
             {

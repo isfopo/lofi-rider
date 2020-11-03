@@ -292,7 +292,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0, g: 0.6099918, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 0.9433962, g: 0.5740477, b: 0.8389597, a: 1}
@@ -4830,7 +4830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ps: {fileID: 7855685338404654322}
   levelDesigner: {fileID: 0}
-  themeSelection: 2
+  themeSelection: 3
 --- !u!114 &-7381600779931032705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4844,7 +4844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 5
+  speed: 10
 --- !u!82 &6157713456306246407
 AudioSource:
   m_ObjectHideFlags: 0
