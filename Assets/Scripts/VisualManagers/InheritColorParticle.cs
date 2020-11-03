@@ -14,7 +14,7 @@ public class InheritColorParticle : MonoBehaviour
         background2
     }
 
-    public new ParticleSystem ps;
+    public ParticleSystem ps;
     public LevelDesigner levelDesigner;
     public ThemeSelection themeSelection;
 
