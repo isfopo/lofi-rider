@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
 using UnityEngine;
+using System;
 
 public class BackgroundMusicManager : MonoBehaviour
 {
@@ -32,10 +31,16 @@ public class BackgroundMusicManager : MonoBehaviour
         {
             gameManager.CallNextScene();
         }
-
-        if (gameManager.Score >= ScoreForNext[currentLoop])
+        try
         {
-            PlayNext();
+            if (gameManager.Score >= ScoreForNext[currentLoop])
+            {
+                PlayNext();
+            }
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Debug.Log("Last Loop");
         }
     }
 
