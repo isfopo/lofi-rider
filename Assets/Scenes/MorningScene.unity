@@ -747,7 +747,7 @@ MonoBehaviour:
   foregroundColor1: {r: 1, g: 1, b: 1, a: 1}
   foregroundColor2: {r: 0, g: 0.8666668, b: 1, a: 1}
   backgroundColor1: {r: 1, g: 1, b: 1, a: 1}
-  backgroundColor2: {r: 0.8537736, g: 1, b: 0.9669503, a: 1}
+  backgroundColor2: {r: 0, g: 0.6099918, b: 1, a: 1}
 --- !u!4 &782066304
 Transform:
   m_ObjectHideFlags: 0
@@ -875,7 +875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8537736, g: 1, b: 0.9669503, a: 1}
+  m_Color: {r: 0, g: 0.6099918, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1036,7 +1036,8 @@ MonoBehaviour:
   - {fileID: 1341447181}
   - {fileID: 1341447180}
   - {fileID: 1341447179}
-  ScoreForNext: 0800000010000000200000002c00000038000000440000005000000054000000
+  ScoreForNext: 0400000010000000200000002c00000038000000440000005000000054000000
+  FinalScore: 90
   Beatcodes:
   - 4b
   - 16b
@@ -1046,6 +1047,7 @@ MonoBehaviour:
   - 16b
   - 16b
   - 16b
+  gameManager: {fileID: 0}
 --- !u!4 &1341447175
 Transform:
   m_ObjectHideFlags: 0
